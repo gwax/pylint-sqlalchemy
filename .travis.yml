@@ -1,0 +1,24 @@
+sudo: true
+dist: xenial
+
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.7"
+cache: pip
+
+before_install:
+  - pip install -U pip setuptools wheel
+
+install:
+  - pip install -r requirements.txt -r requirements_test.txt
+
+script:
+  - pytest
+  - black --check --diff .
+  - isort --check-only --diff --recursive
+  - pylint pylint_sqlalchemy tests
+  - mypy .
+  - npx eclint check $(git ls-files)
