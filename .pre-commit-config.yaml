@@ -17,11 +17,6 @@ repos:
         language: system
         entry: pylint
         types: [python]
-      - id: mypy
-        name: Type checking from mypy
-        language: system
-        entry: mypy
-        types: [python]
       - id: eclint
         name: EditorConfig file validation
         language: node

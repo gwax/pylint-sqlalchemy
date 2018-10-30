@@ -2,12 +2,14 @@ sudo: true
 dist: xenial
 
 language: python
-python:
-  - "2.7"
-  - "3.5"
-  - "3.6"
-  - "3.7"
 cache: pip
+matrix:
+  include:
+    - python: 3.7
+      env: BLACK_CHECK=true
+    - python: 3.6
+    - python: 3.5
+    - python: 2.7
 
 before_install:
   - pip install -U pip setuptools wheel
@@ -17,8 +19,7 @@ install:
 
 script:
   - pytest
-  - black --check --diff .
+  - '[ "$SKIP_BLACK" != "true" ] || black --check .'
   - isort --check-only --diff --recursive
   - pylint pylint_sqlalchemy tests
-  - mypy .
   - npx eclint check $(git ls-files)
