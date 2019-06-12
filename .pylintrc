@@ -22,6 +22,7 @@ disable=
     localled-enabled,
     locally-disabled,
     logging-format-interpolation,
+    useless-object-inheritance,
     too-few-public-methods,
     too-many-statements,
     wrong-import-order,
