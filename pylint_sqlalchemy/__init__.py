@@ -10,11 +10,7 @@ from pylint_sqlalchemy.dml_no_argument import strip_dml
 
 def register(_):
     """Register plugins with pylint."""
-    MANAGER.register_transform(
-        astroid.FunctionDef, strip_dml
-    )
+    MANAGER.register_transform(astroid.FunctionDef, strip_dml)
 
 
-__all__ = [
-    'plugin'
-]
+__all__ = ["plugin"]

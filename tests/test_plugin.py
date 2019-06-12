@@ -17,9 +17,5 @@ class PluginTest(TestCase):
     def test_node(self):
         """Test the node."""
         self.assertIsNotNone(self.node)
-        self.assertIsInstance(
-            self.node.getattr('query')[0], astroid.FunctionDef
-        )
-        self.assertIsInstance(
-            self.node.getattr('add')[0], astroid.FunctionDef
-        )
+        self.assertIsInstance(self.node.getattr("query")[0], astroid.FunctionDef)
+        self.assertIsInstance(self.node.getattr("add")[0], astroid.FunctionDef)
