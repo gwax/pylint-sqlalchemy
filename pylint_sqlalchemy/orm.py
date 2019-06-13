@@ -1,7 +1,6 @@
 """Pylint sqlachemy hack module."""
 
 
-# pylint disable=R0205
 class Session(object):
     """Session hack for sqlalchemy session."""
 
