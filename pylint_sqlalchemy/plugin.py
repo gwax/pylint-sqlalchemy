@@ -14,9 +14,16 @@ def handle_session(cls):
         module = AstroidBuilder(MANAGER).file_build(
             "/".join(source_files), "sqlalchemy.orm.session"
         )
-        session = module.locals.get("Session")[0]
-        for method in Session.public_methods:
-            cls.locals[method] = session.locals[method]
+
+        session = None
+        for node in module.body:
+            if isinstance(node, astroid.ClassDef) and node.name == "Session":
+                session = node
+                break
+
+        if session:
+            for method in Session.public_methods:
+                cls.locals[method] = session.locals.get(method, None)
 
         return cls
 
