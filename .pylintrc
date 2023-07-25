@@ -16,10 +16,8 @@ persistent=yes
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
 disable=
-    bad-continuation,
     fixme,
     line-too-long,
-    localled-enabled,
     locally-disabled,
     logging-format-interpolation,
     useless-object-inheritance,

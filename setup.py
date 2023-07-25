@@ -4,13 +4,17 @@ import setuptools
 
 # Get version information without importing the package
 __version__ = None
-exec(open("pylint_sqlalchemy/_version.py", "r").read())  # pylint: disable=exec-used
+with open("pylint_sqlalchemy/_version.py", "rt", encoding="utf-8") as version_file:
+    exec(version_file.read())  # pylint: disable=exec-used
 
 SHORT_DESCRIPTION = "pylint plugin to fix incompatibility issues with sqlalchemy"
-LONG_DESCRIPTION = open("README.rst", "r").read()
+with open("README.rst", "rt", encoding="utf-8") as readme_file:
+    LONG_DESCRIPTION = readme_file.read()
 
-INSTALL_REQUIRES = [l.strip() for l in open("requirements.txt", "r")]
-TEST_DEPENDENCIES = [l.strip() for l in open("test_requirements.txt", "r")]
+with open("requirements.txt", "rt", encoding="utf-8") as requirements_file:
+    INSTALL_REQUIRES = [line.strip() for line in requirements_file]
+with open("test_requirements.txt", "rt", encoding="utf-8") as test_requirements_file:
+    TEST_DEPENDENCIES = [line.strip() for line in test_requirements_file]
 
 CLASSIFIERS = [
     "Environment :: Console",
