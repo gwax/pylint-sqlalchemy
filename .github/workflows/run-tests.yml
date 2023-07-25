@@ -1,0 +1,37 @@
+name: pytest
+
+on:
+  pull_request:
+  push:
+    branches:
+      - trunk
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "3.11"
+    name: Python ${{ matrix.python-version }} pytest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "${{ matrix.python-version }}"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            test_requirements.txt
+
+      - name: Install requirements
+        run: |
+          pip install -U pip setuptools wheel
+          pip install -r requirements.txt -r test_requirements.txt
+
+      - name: Execute pytest
+        run: pytest tests/
